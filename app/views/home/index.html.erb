@@ -4,9 +4,9 @@
 <% if @warehouses.empty? %>
     <p>Não existem galpões cadastrados.</p>
 <% end%>
-<% @warehouses.each do |warehouse|%>
-    <%= warehouse.name %>
+<% @warehouses.each do |warehouse| %>
+    <%= link_to(warehouse.name, warehouse_path(warehouse.id)) %>
     Cidade: <%= warehouse.city %>
-    Código: <%= warehouse.code%>
-    <%= warehouse.area%> m2
+    Código: <%= warehouse.code %>
+    <%= warehouse.area %> m2
 <% end %>
