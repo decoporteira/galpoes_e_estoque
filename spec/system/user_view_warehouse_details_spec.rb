@@ -8,7 +8,7 @@ describe 'ver detalhes dos galpoes' do
                             description: 'Galpão destinado para cargas internacionais')
         w.save()                        
     # Act
-        visit('/')
+        visit(root_path)
         click_on('Aeroporto SP')
     # Assert
     expect(page).to have_content('Galpão GRU')
