@@ -13,7 +13,7 @@ describe 'Usuário cadastra um galpão' do
         expect(page).to have_field('Código')
         expect(page).to have_field('Endereço')
         expect(page).to have_field('Cidade')
-        expect(page).to have_field('Cep')
+        expect(page).to have_field('CEP')
         expect(page).to have_field('Área')
     
     end
@@ -25,7 +25,7 @@ describe 'Usuário cadastra um galpão' do
         fill_in 'Código', with: 'RIO'
         fill_in 'Endereço', with: 'Aveniado do Museu do Amanhã, 1000'
         fill_in 'Cidade', with: 'Rio de Janeiro'
-        fill_in 'Cep', with: '20100-000'
+        fill_in 'CEP', with: '20100-000'
         fill_in 'Área', with: '32000'
         click_on 'Enviar'
 
@@ -43,7 +43,11 @@ describe 'Usuário cadastra um galpão' do
         fill_in 'Descrição', with: ''
         click_on 'Enviar'
 
-        expect(page).to have_content 'Galpão não cadastrado.'
+        expect(page).to have_content 'Galpão não cadastrado'
+        expect(page).to have_content 'Nome não pode ficar em branco'
+        expect(page).to have_content 'Cidade não pode ficar em branco'
+        expect(page).to have_content 'Código não pode ficar em branco'
+        expect(page).to have_content 'Descrição não pode ficar em branco'
     end
 
 end
