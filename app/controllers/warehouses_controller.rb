@@ -1,19 +1,29 @@
 class WarehousesController < ApplicationController
-   
+   before_action :set_warehouse, only: [:show, :edit, :update, :destroy]
    
    def new
       @warehouse = Warehouse.new
    end
-   def show
-      @warehouse = Warehouse.find(params[:id])
-   end
-   def edit
-      @warehouse = Warehouse.find(params[:id])
+   
+   def show; end
+
+   def edit; end
+
+   def create
+      # receber os dados, criar um novo galpao e redirecionar
+      warehouse_params
+      @warehouse = Warehouse.new(warehouse_params)
+      if @warehouse.save()
+         redirect_to root_path, notice: "Galpão cadastrado com sucesso."
+      else
+         flash.now[:notice] = "Galpão não cadastrado."
+         render 'new'
+      end
    end
 
    def update
-      @warehouse = Warehouse.find(params[:id])
-      warehouse_params = params.require(:warehouse).permit(:name, :code, :city, :description, :address, :cep, :area)
+   
+      warehouse_params
       @warehouse.update(warehouse_params)
       if @warehouse.save()
          redirect_to warehouse_path(@warehouse.id), notice: "Galpão editado com sucesso."
@@ -23,15 +33,18 @@ class WarehousesController < ApplicationController
       end
    end
 
-   def create
-      # receber os dados, criar um novo galpao e redirecionar
+   def destroy
+      @warehouse.destroy
+      redirect_to root_path, notice: 'Galpão removido com sucesso'
+   end
+
+   private
+
+   def warehouse_params
       warehouse_params = params.require(:warehouse).permit(:name, :code, :city, :description, :address, :cep, :area)
-      @warehouse = Warehouse.new(warehouse_params)
-      if @warehouse.save()
-         redirect_to root_path, notice: "Galpão cadastrado com sucesso."
-      else
-         flash.now[:notice] = "Galpão não cadastrado."
-         render 'new'
-      end
+   end
+
+   def set_warehouse
+      @warehouse = Warehouse.find(params[:id])
    end
 end
