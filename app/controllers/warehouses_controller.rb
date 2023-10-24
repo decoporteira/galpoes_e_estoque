@@ -11,7 +11,6 @@ class WarehousesController < ApplicationController
 
    def create
       # receber os dados, criar um novo galpao e redirecionar
-      warehouse_params
       @warehouse = Warehouse.new(warehouse_params)
       if @warehouse.save()
          redirect_to root_path, notice: "Galpão cadastrado com sucesso."
@@ -22,8 +21,6 @@ class WarehousesController < ApplicationController
    end
 
    def update
-   
-      warehouse_params
       @warehouse.update(warehouse_params)
       if @warehouse.save()
          redirect_to warehouse_path(@warehouse.id), notice: "Galpão editado com sucesso."
