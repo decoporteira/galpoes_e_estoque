@@ -1,17 +1,8 @@
 pt-BR:
   activerecord:
     models:
-      warehouse: "Galpão"
       supplier: "Fornecedor"
     attributes:
-      warehouse:
-        name: "Nome"
-        code: "Código"
-        description: "Descrição"
-        cep: "CEP"
-        address: "Endereço"
-        area: "Área"
-        city: "Cidade"
       supplier:
         corporate_name: "Nome da empresa"
         brand_name: "Nome fantasia"

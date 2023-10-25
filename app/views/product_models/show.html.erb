@@ -1,0 +1,19 @@
+<h1>Produto: <%= @product_model.name %></h1>
+<h2>Fornecedor: <%= @product_model.supplier.brand_name %>  </h2>
+<div>
+  <dl>
+    <dt>SKU:</dt>
+    <dd><%= @product_model.sku %></dd>
+    <dt>Dimensão:</dt>
+    <dd><%= @product_model.width %>cm x <%= @product_model.depth %>cm x <%= @product_model.height %>cm</dd>
+    <dt>Peso:</dt>
+    <dd><%= @product_model.weight %>g</dd>
+  </dl>
+</div>
+<div>
+  <%#= link_to('Editar', edit_product_model_path)%>
+  <%#= button_to('Remover', @product_model, method: :delete)%>
+</div>
+<div>
+  <%#= link_to('Voltar', product_models_path) %>
+</div>
