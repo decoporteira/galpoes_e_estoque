@@ -5,8 +5,10 @@ describe 'Usuário cadastra um modelo de produto' do
         # arrange
         supplier = Supplier.create!(corporate_name: 'Samsung Corporate SA', brand_name: 'Samsung', city: 'Rio de Janeiro', registration_number: '32423434343423', full_address: "Rua das Casas, 180", state: "RJ", email: "contato@samsung.com.br")
         supplier_two = Supplier.create!(corporate_name: 'LG Corporate SA', brand_name: 'LG', city: 'São Paulo', registration_number: '34325456565', full_address: "Avenida das Coves, 343", state: "SP", email: "contato@lg.com.br")
+        user = User.create!(name: 'Admin', email: 'admin@admin.com', password: 'password')
 
-        #act
+        #Act
+        login_as(user, :scope => :user)
         visit root_path
         click_on "Modelos de Produtos"
         click_on 'Cadastrar Novo'
@@ -27,11 +29,13 @@ describe 'Usuário cadastra um modelo de produto' do
         expect(page).to have_content 'Dimensão: 45cm x 50cm x 20cm'
         expect(page).to have_content 'Peso: 8000g'
     end
-    it 'deve preencher todos os campos' do
+    it 'e deve preencher todos os campos' do
         # arrange
         supplier = Supplier.create!(corporate_name: 'LG Corporate SA', brand_name: 'LG', city: 'Rio de Janeiro', registration_number: '32423434343423', full_address: "Rua das Casas, 180", state: "RJ", email: "contato@samsung.com.br")
+        user = User.create!(name: 'Admin', email: 'admin@admin.com', password: 'password')
 
-        #act
+        #Act
+        login_as(user, :scope => :user)
         visit root_path
         click_on "Modelos de Produtos"
         click_on 'Cadastrar Novo'
