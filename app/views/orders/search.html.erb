@@ -1,0 +1,16 @@
+<h1>Resultados da buscar por: <%= @code%></h1>
+<% if @orders_search.nil? %>
+  <p>Não foi encontrado nenhum pedido para a sua busca.</p>
+<% else %>
+  <%= @orders_search.length%> pedido encontrado.
+  <%@orders_search.each do |order| %>
+    <dl>
+      <dt><%= Order.human_attribute_name(:code)%>: </dt>
+      <dd><%= order.code %></dd>
+      <dt><%= Order.human_attribute_name(:warehouse_id)%>:</dt>
+      <dd><%= order.warehouse.name %></dd>
+      <dt><%= Order.human_attribute_name(:supplier_id)%>:</dt>
+      <dd><%= order.supplier.brand_name %></dd>
+    </dl>
+  <% end %>
+<% end %>
