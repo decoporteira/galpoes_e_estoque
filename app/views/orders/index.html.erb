@@ -1,0 +1,9 @@
+<section id="orders">
+  <h2>Meus Pedidos</h2>
+  <% @orders.each do |order| %>
+    <%= render order %>
+  <% end %>
+  <% if @orders.empty? %>
+    <p>Não existem fornecedores cadastrados.</p>
+  <% end%>
+</section>
