@@ -2,7 +2,7 @@
 <% if @orders_search.nil? %>
   <p>Não foi encontrado nenhum pedido para a sua busca.</p>
 <% else %>
-  <%= @orders_search.length%> pedido encontrado.
+  <p><%= @orders_search.count %> <%= Order.model_name.human(count: @orders_search.count) %> <%=I18n.translate(:found, count: @orders_search.count)%>.</p>
   <%@orders_search.each do |order| %>
     <dl>
       <dt><%= Order.human_attribute_name(:code)%>: </dt>

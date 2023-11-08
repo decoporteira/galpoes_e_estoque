@@ -26,7 +26,8 @@ class OrdersController < ApplicationController
 
     def search
         @code = params['query']
-        @orders_search = Order.where(code: @code)
+        # @orders_search = Order.where(code: @code)
+        @orders_search = Order.where("code LIKE ?", "%#{@code}%")
     end
 
 end
