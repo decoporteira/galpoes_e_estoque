@@ -1,10 +1,7 @@
 class OrdersController < ApplicationController
     before_action :authenticate_user!
     
-    def index
-        @orders = current_user.orders
-    end
-
+    
     def new
         @order = Order.new
         @warehouses = Warehouse.all
@@ -12,7 +9,12 @@ class OrdersController < ApplicationController
         
     end
 
-   
+        
+    def index
+        @orders = current_user.orders
+    end
+
+
     def create
         order_params = params.require(:order).permit(:warehouse_id, :supplier_id, :estimated_delivery_date)
         @order = Order.new(order_params)
