@@ -102,6 +102,18 @@ RSpec.describe Order, type: :model do
             expect(second_order.code).not_to eq first_order.code
             
         end
+        it 'e não deve ser modificado' do
+            user = User.create!(name: 'Admin', email: 'admin@admin.com',password: 'password')
+            warehouse = Warehouse.create!(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 10_000, address: 'Avenida do Contorno, 20', cep: '20000-000', description: 'Galpão destinado para cargas internacionais')
+            supplier = Supplier.create!(corporate_name: 'Samsung Corporate SA', brand_name: 'Samsung', city: 'Rio de Janeiro', registration_number: '200', full_address: "Rua das Casas, 180", state: "SP", email: "contato@samsung.com.br") 
+            order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 10.days.from_now)
+            original_code = order.code                                 
+            
+            order.update!(estimated_delivery_date: 1.month.from_now)
+            
+            expect(order.code).to eq(original_code)
+        
+        end
     end
 
 end

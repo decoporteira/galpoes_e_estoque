@@ -59,9 +59,14 @@ class OrdersController < ApplicationController
     end
 
     def delivered
-       #@order.update(status: :delivered)
-       @order.delivered!
-       redirect_to @order, alert: 'Pedido atualizado com sucesso.'
+        #@order.update(status: :delivered)
+        @order.delivered!
+        @order.order_items.each do |item|
+            item.quantity.times do
+                StockProduct.create(order: @order, product_model: item.product_model, warehouse: @order.warehouse)
+            end
+        end
+        redirect_to @order, alert: 'Pedido atualizado com sucesso.'
     end
     def canceled
         #@order.update(status: :delivered)

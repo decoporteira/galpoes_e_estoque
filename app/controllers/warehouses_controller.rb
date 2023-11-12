@@ -5,7 +5,10 @@ class WarehousesController < ApplicationController
       @warehouse = Warehouse.new
    end
    
-   def show; end
+   def show
+      @stocks = @warehouse.stock_products.where.missing(:stock_product_destination).group(:product_model).count
+      @product_models = ProductModel.all
+   end
 
    def edit; end
 
