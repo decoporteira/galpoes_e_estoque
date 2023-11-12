@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_order_and_check_user, only: [:show, :edit, :update]
+    before_action :set_order_and_check_user, only: [:show, :edit, :update, :delivered, :canceled]
     
     
     def new
@@ -57,6 +57,17 @@ class OrdersController < ApplicationController
         # @orders_search = Order.where(code: @code)
         @orders_search = Order.where("code LIKE ?", "%#{@code}%")
     end
+
+    def delivered
+       #@order.update(status: :delivered)
+       @order.delivered!
+       redirect_to @order, alert: 'Pedido atualizado com sucesso.'
+    end
+    def canceled
+        #@order.update(status: :delivered)
+        @order.canceled!
+        redirect_to @order, alert: 'Pedido atualizado com sucesso.'
+     end
 
     private
 

@@ -38,6 +38,7 @@ describe 'Usuário cadastra um pedido' do
         expect(page).to have_content 'Pedido: 12345678'
         expect(page).to have_content 'Fornecedor: Samsung Corporate SA'
         expect(page).to have_content 'Usuário responsável: Admin - admin@admin.com'
+        expect(page).to have_content 'Status: Pendente'
         expect(page).to have_content 'Data prevista para entrega: 20/12/2030' 
         expect(page).not_to have_content 'Cuiaba'
         expect(page).not_to have_content 'Xiaomi Corporate SA'
